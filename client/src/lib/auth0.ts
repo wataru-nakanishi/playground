@@ -11,15 +11,16 @@ function getServerSetting(environmentVariable: string, defaultValue?: string) {
 export default initAuth0({
   clientId: getServerSetting('AUTH0_CLIENT_ID'),
   clientSecret: getServerSetting('AUTH0_CLIENT_SECRET'),
-  scope: 'openid profile email',
+  scope: 'openid profile email read:shows',
   domain: getServerSetting('AUTH0_DOMAIN'),
+  audience: getServerSetting('AUTH0_AUDIENCE'),
   redirectUri: getServerSetting('REDIRECT_URI', 'http://localhost:3000/api/callback'),
   postLogoutRedirectUri: getServerSetting('POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000/'),
   session: {
     cookieSecret: getServerSetting('SESSION_COOKIE_SECRET'),
     cookieLifetime: 7200,
     storeIdToken: false,
-    storeRefreshToken: false,
-    storeAccessToken: false
+    storeRefreshToken: true,
+    storeAccessToken: true
   }
 });
