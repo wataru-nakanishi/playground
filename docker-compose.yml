@@ -16,7 +16,7 @@ services:
     - ./server:/var/www
     - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-    - playground-php
+    - php
 
   db:
     image: mysql:8.0
@@ -47,5 +47,5 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - TZ=${TZ}
 
-  volumes:
-    db-store:
+volumes:
+  db-store:
